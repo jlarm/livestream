@@ -10,6 +10,9 @@ Route::get('/', function () {
 
 Route::post('/', [SubmissionController::class, 'store'])->name('submission.store');
 
+Route::get('submissions/export', [SubmissionController::class, 'exportCsv'])
+    ->middleware(['auth', 'verified'])->name('submissions.export');
+
 Route::get('dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
