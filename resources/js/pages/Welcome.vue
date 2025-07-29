@@ -8,6 +8,7 @@ const form = useForm({
     last_name: '',
     email: '',
     company_name: '',
+    website: '',
 });
 
 const isSubmitted = ref(false);
@@ -54,10 +55,15 @@ const nextFridayFormatted = computed(() => {
 });
 
 const submit = () => {
+    if (form.website && form.website.trim() !== '') {
+        form.reset('first_name','last_name','email','company_name','website');
+        return;
+    }
+
     form.post(route('submission.store'), {
         onSuccess: () => {
             isSubmitted.value = true;
-            form.reset('first_name','last_name','email','company_name');
+            form.reset('first_name','last_name','email','company_name','website');
         },
         onError: (errors) => {
             // Handle rate limiting (429 status code)
@@ -122,7 +128,7 @@ const submit = () => {
                 <form v-else @submit.prevent="submit">
                     <div class="mx-auto max-w-xl lg:mr-0 lg:max-w-lg">
                     <p class="mb-5 text-lg/8 text-gray-400">Sign up to get notified of the next livestream.</p>
-                    
+
                     <!-- General error message (rate limiting, etc.) -->
                     <div v-if="form.errors.general" class="mb-4 p-3 rounded-md bg-red-900/20 border border-red-500/30">
                         <p class="text-sm text-red-400">{{ form.errors.general }}</p>
@@ -175,6 +181,12 @@ const submit = () => {
                                 <div v-if="form.errors.company_name" class="mt-2 text-sm text-red-400">
                                     {{ form.errors.company_name }}
                                 </div>
+                            </div>
+
+                            <!-- Honeypot field - hidden from users but visible to bots -->
+                            <div style="position: absolute; left: -9999px; opacity: 0; pointer-events: none;" aria-hidden="true">
+                                <label for="website">Website (leave this field empty)</label>
+                                <input type="text" name="website" id="website" v-model="form.website" tabindex="-1" autocomplete="new-password" style="position: absolute; left: -9999px;" />
                             </div>
                         </div>
                         <div class="mt-8 flex justify-end">

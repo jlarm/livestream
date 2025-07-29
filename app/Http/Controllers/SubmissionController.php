@@ -15,7 +15,10 @@ class SubmissionController extends Controller
             return redirect()->route('home');
         }
 
-        Submission::create($request->validated());
+        $data = $request->validated();
+        unset($data['website']); // Remove honeypot field before saving
+        
+        Submission::create($data);
 
         return redirect()->route('home');
     }
