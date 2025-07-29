@@ -93,13 +93,13 @@ const submit = () => {
                         </div>
                     </div>
                     <div class="flex gap-3 items-center mb-3">
-                        <img src="rb-logo.png" class="w-44" alt="Ridgeback Cybersecurity & IT Overwatch">
-                        <img src="armp-logo.png" class="w-44" alt="Automotive Risk Management Partners">
+                        <img src="rb-logo.png" class="w-44" alt="Ridgeback Cybersecurity & IT Overwatch" loading="lazy">
+                        <img src="armp-logo.png" class="w-44" alt="Automotive Risk Management Partners" loading="lazy">
                     </div>
                     <h2 class="text-4xl font-semibold tracking-tight text-pretty text-white sm:text-5xl">Breach of Protocol</h2>
                     <h2 class="mt-6 text-xl font-semibold tracking-tight text-pretty text-white sm:text-2xl">{{ nextFridayFormatted }} 3pm  EST</h2>
                     <p class="mt-6 text-lg/8 text-white">Candid talk about the uncomfortable truths in cyber</p>
-                    <img src="stream.png" alt="Stream">
+                    <img src="stream.png" alt="Stream" loading="lazy">
                 </div>
             </div>
             <div class="px-6 pt-20 pb-24 sm:pb-32 lg:px-8 lg:py-48">
