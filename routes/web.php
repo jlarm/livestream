@@ -8,7 +8,9 @@ Route::get('/', function () {
     return Inertia::render('Welcome');
 })->name('home');
 
-Route::post('/', [SubmissionController::class, 'store'])->name('submission.store');
+Route::post('/', [SubmissionController::class, 'store'])
+    ->middleware('throttle:3,1')
+    ->name('submission.store');
 
 Route::get('submissions/export', [SubmissionController::class, 'exportCsv'])
     ->middleware(['auth', 'verified'])->name('submissions.export');

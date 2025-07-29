@@ -59,8 +59,12 @@ const submit = () => {
             isSubmitted.value = true;
             form.reset('first_name','last_name','email','company_name');
         },
-        onError: () => {
-            // Errors are automatically handled by Inertia and displayed in form.errors
+        onError: (errors) => {
+            // Handle rate limiting (429 status code)
+            if (errors.message && errors.message.includes('Too Many Attempts')) {
+                form.setError('general', 'Too many submissions. Please wait a moment before trying again.');
+            }
+            // Other errors are automatically handled by Inertia and displayed in form.errors
         },
     });
 };
@@ -118,6 +122,11 @@ const submit = () => {
                 <form v-else @submit.prevent="submit">
                     <div class="mx-auto max-w-xl lg:mr-0 lg:max-w-lg">
                     <p class="mb-5 text-lg/8 text-gray-400">Sign up to get notified of the next livestream.</p>
+                    
+                    <!-- General error message (rate limiting, etc.) -->
+                    <div v-if="form.errors.general" class="mb-4 p-3 rounded-md bg-red-900/20 border border-red-500/30">
+                        <p class="text-sm text-red-400">{{ form.errors.general }}</p>
+                    </div>
                         <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
                             <div>
                                 <label for="first_name" class="block text-sm/6 font-semibold text-white">First name*</label>
