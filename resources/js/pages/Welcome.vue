@@ -81,9 +81,9 @@ const submit = () => {
         <link rel="preconnect" href="https://rsms.me/" />
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
     </Head>
-    <div class="relative isolate bg-gray-900">
-        <div class="mx-auto grid max-w-7xl grid-cols-1 lg:grid-cols-2">
-            <div class="relative px-6 pt-24 pb-20 sm:pt-32 lg:static lg:px-8 lg:py-48">
+    <div class="relative isolate bg-gray-900 min-h-screen flex items-center">
+        <div class="mx-auto grid max-w-7xl grid-cols-1 lg:grid-cols-2 w-full">
+            <div class="relative px-6 py-20 lg:static lg:px-8 lg:py-24">
                 <div class="mx-auto max-w-xl lg:mx-0 lg:max-w-lg">
                     <div class="absolute inset-y-0 left-0 -z-10 w-full overflow-hidden bg-gray-900 ring-1 ring-white/10 lg:w-1/2">
                         <svg class="absolute inset-0 size-full mask-[radial-gradient(100%_100%_at_top_right,white,transparent)] stroke-white/10" aria-hidden="true">
@@ -112,7 +112,7 @@ const submit = () => {
                     <img src="stream.png" alt="Stream" loading="lazy">
                 </div>
             </div>
-            <div class="px-6 pt-20 pb-24 sm:pb-32 lg:px-8 lg:py-48">
+            <div class="px-6 py-20 lg:px-8 lg:py-24">
                 <!-- Thank you message -->
                 <div v-if="isSubmitted" class="mx-auto max-w-xl lg:mr-0 lg:max-w-lg">
                     <div class="text-center">
